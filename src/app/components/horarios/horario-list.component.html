@@ -1,0 +1,26 @@
+<div class="container">
+    <h2>Lista de Horarios</h2>
+    <button (click)="createHorario()">Crear Horario</button>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Días de la Semana</th>
+            <th>Hora de Inicio</th>
+            <th>Hora de Fin</th>
+            <th>Editar</th>
+            <th>eliminar</th>
+        </tr>
+        <tr *ngFor="let horario of horarios">
+            <td>{{ horario.id }}</td>
+            <td (click)="verAsignaciones(horario)">{{ horario.diasDeLaSemana!.join(', ') }}</td>
+            <td>{{ horario.horaInicio }}</td>
+            <td>{{ horario.horaFin }}</td>
+            <td>
+                <button (click)="editHorario(horario)">Editar</button>
+            </td>
+            <td>
+                <button (click)="deleteHorario(horario.id!)">Eliminar</button>
+            </td>
+        </tr>
+    </table>
+</div>

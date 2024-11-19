@@ -1,0 +1,23 @@
+<form [formGroup]="rutaForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="rutaData!= undefined">
+        <label for="id">ID:</label>
+        <input id="id" type="number" formControlName="id" required readonly>
+    </div>
+    <label for="codigo">Código:</label>
+    <input id="codigo" type="text" formControlName="codigo" required>
+    <div *ngIf="rutaForm.controls.codigo.invalid && (rutaForm.controls.codigo.dirty || rutaForm.controls.codigo.touched)"
+        class="alert">
+        <div *ngIf="rutaForm.controls.codigo.errors?.['required']">El código es obligatorio.</div>
+        <div *ngIf="rutaForm.controls.codigo.errors?.['minlength']">El código debe tener al menos 3 caracteres.</div>
+    </div>
+
+    <label for="estaciones">Estaciones (separadas por comas):</label>
+    <input id="estaciones" type="text" (change)="updateEstaciones($event)"
+        placeholder="Ej: Estación 1, Estación 2, Estación 3">
+    <div *ngIf="rutaForm.controls.estaciones.invalid && (rutaForm.controls.estaciones.dirty || rutaForm.controls.estaciones.touched)"
+        class="alert">
+        <div *ngIf="rutaForm.controls.estaciones.errors?.['required']">Debe ingresar al menos una estación.</div>
+    </div>
+
+    <button type="submit" >Guardar Ruta</button>
+</form>

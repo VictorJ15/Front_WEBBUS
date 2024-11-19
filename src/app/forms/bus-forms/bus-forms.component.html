@@ -1,0 +1,24 @@
+<form [formGroup]="busForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="busData!= undefined">
+        <label for="id">ID:</label>
+    <input id="id"  type="number" formControlName="id" required readonly>
+    </div>
+    <label for="placa">Placa:</label>
+    <input id="placa" type="text" formControlName="placa" required >
+    <div *ngIf="busForm.controls.placa.invalid && (busForm.controls.placa.dirty || busForm.controls.placa.touched)"
+        class="alert">
+        <div *ngIf="busForm.controls.placa.errors?.['required']">La placa es obligatoria.</div>
+        <div *ngIf="busForm.controls.placa.errors?.['pattern']">La placa debe contener solo letras mayúsculas y
+            números.</div>
+    </div>
+
+    <label for="modelo">Modelo:</label>
+    <input id="modelo" type="text" formControlName="modelo" required>
+    <div *ngIf="busForm.controls.modelo.invalid && (busForm.controls.modelo.dirty || busForm.controls.modelo.touched)"
+        class="alert">
+        <div *ngIf="busForm.controls.modelo.errors?.['required']">El modelo es obligatorio.</div>
+        <div *ngIf="busForm.controls.modelo.errors?.['minlength']">El modelo debe tener al menos 2 caracteres.</div>
+    </div>
+
+    <button type="submit" >Guardar Bus</button>
+</form>

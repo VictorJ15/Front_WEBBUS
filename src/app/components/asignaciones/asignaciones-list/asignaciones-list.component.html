@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>Lista de Asignaciones</h2>
+    <button (click)="createAsignacion()">Crear Asignacion</button>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Conductor</th>
+                <th>Ruta</th>
+                <th>Horario</th>
+                <th>Bus</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr *ngFor="let asignacion of  asignaciones">
+                    <td>{{ asignacion.id }}</td>
+                    <td (click)="verAsignaciones(asignacion.conductor?.id!,'conductores/asignaciones')">{{ asignacion.conductor?.nombre }}</td>
+                    <td (click)="verAsignaciones(asignacion.ruta?.id!,'rutas/asignaciones')">{{ asignacion.ruta!.estaciones!.join(" ,") }}</td>
+                    <td (click)="verAsignaciones(asignacion.horario?.id!,'horarios/asignaciones')">{{ asignacion.horario!.diasDeLaSemana!.join(" ,")}}</td>
+                    <td (click)="verAsignaciones(asignacion.bus?.id!,'buses/asignaciones')">{{asignacion.bus?.modelo}}</td>
+                    <td>
+                        <button (click)="editAsignacion(asignacion)">Editar</button>
+                    </td>
+                    <td>
+                        <button (click)="deleteAsignacion(asignacion.id!)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+    </table>
+</div>

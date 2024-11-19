@@ -1,0 +1,54 @@
+<form [formGroup]="asignacionForm" (ngSubmit)="onSubmit()">
+
+    <label for="conductor">Conductor:</label>
+    <select id="conductor" formControlName="conductor">
+        <option [ngValue]="null">{{ conductor ? conductor.nombre : 'Seleccione un conductor' }}</option>
+        <option *ngFor="let conductor of conductores" [ngValue]="conductor.id">
+            {{ conductor.nombre }}
+        </option>
+    </select>
+    <div *ngIf="asignacionForm.get('conductor')?.invalid && asignacionForm.get('conductor')?.touched" class="alert">
+        Debe seleccionar un conductor.
+    </div>
+    
+    <button (click)="redirectToCreation('conductores/create')">Nuevo Conductor</button>
+
+    <label for="bus">Bus:</label>
+    <select id="bus" formControlName="bus">
+        <option [ngValue]="null">{{ bus ? bus.placa : 'Seleccione un bus' }}</option>
+        <option *ngFor="let bus of buses" [ngValue]="bus.id">
+            {{ bus.placa }}
+        </option>
+    </select>
+    <div *ngIf="asignacionForm.get('bus')?.invalid && asignacionForm.get('bus')?.touched" class="alert">
+        Debe seleccionar un bus.
+    </div>
+
+    <button (click)="redirectToCreation('buses/create')">Nuevo Bus</button>
+
+    <label for="ruta">Ruta:</label>
+    <select id="ruta" formControlName="ruta">
+        <option [ngValue]="null">{{ ruta ? ruta.codigo : 'Seleccione una ruta' }}</option>
+        <option *ngFor="let ruta of rutas" [ngValue]="ruta.id">
+            {{ ruta.codigo }}
+        </option>
+    </select>
+    <div *ngIf="asignacionForm.get('ruta')?.invalid && asignacionForm.get('ruta')?.touched" class="alert">
+        Debe seleccionar una ruta.
+    </div>
+    <button (click)="redirectToCreation('rutas/create')">Nueva Ruta</button>
+
+    <label for="horario">Horario:</label>
+    <select id="horario" formControlName="horario">
+        <option [ngValue]="null">{{ horario ? horario.horaFin : 'Seleccione un horario' }}</option>
+        <option *ngFor="let horario of horarios" [ngValue]="horario.id">
+            {{ horario.horaInicio }} - {{ horario.horaFin }}
+        </option>
+    </select>
+    <div *ngIf="asignacionForm.get('horario')?.invalid && asignacionForm.get('horario')?.touched" class="alert">
+        Debe seleccionar un horario.
+    </div>
+    <button (click)="redirectToCreation('horarios/create')">Nuevo Horario</button>
+
+    <button type="submit">Guardar Asignación</button>
+</form>

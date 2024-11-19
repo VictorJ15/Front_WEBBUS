@@ -1,0 +1,41 @@
+<form [formGroup]="conductorForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="conductorData!= undefined">
+        <label for="id">ID:</label>
+        <input id="id" type="number" formControlName="id" required readonly>
+    </div>
+    
+
+    <label for="nombre">Nombre:</label>
+    <input id="nombre" type="text" formControlName="nombre" required>
+    <div *ngIf="conductorForm.controls.nombre.invalid && (conductorForm.controls.nombre.dirty || conductorForm.controls.nombre.touched)"
+        class="alert">
+        <div *ngIf="conductorForm.controls.nombre.errors?.['required']">El nombre es obligatorio.</div>
+        <div *ngIf="conductorForm.controls.nombre.errors?.['minlength']">El nombre debe tener al menos 2 caracteres.
+        </div>
+    </div>
+
+    <label for="cedula">Cédula:</label>
+    <input id="cedula" type="text" formControlName="cedula" required>
+    <div *ngIf="conductorForm.controls.cedula.invalid && (conductorForm.controls.cedula.dirty || conductorForm.controls.cedula.touched)"
+        class="alert">
+        <div *ngIf="conductorForm.controls.cedula.errors?.['required']">La cédula es obligatoria.</div>
+        <div *ngIf="conductorForm.controls.cedula.errors?.['pattern']">La cédula debe ser numérica.</div>
+    </div>
+
+    <label for="telefono">Teléfono:</label>
+    <input id="telefono" type="text" formControlName="telefono" required>
+    <div *ngIf="conductorForm.controls.telefono.invalid && (conductorForm.controls.telefono.dirty || conductorForm.controls.telefono.touched)"
+        class="alert">
+        <div *ngIf="conductorForm.controls.telefono.errors?.['required']">El teléfono es obligatorio.</div>
+        <div *ngIf="conductorForm.controls.telefono.errors?.['pattern']">El teléfono debe tener 10 dígitos.</div>
+    </div>
+
+    <label for="direccion">Dirección:</label>
+    <input id="direccion" type="text" formControlName="direccion" required>
+    <div *ngIf="conductorForm.controls.direccion.invalid && (conductorForm.controls.direccion.dirty || conductorForm.controls.direccion.touched)"
+        class="alert">
+        <div *ngIf="conductorForm.controls.direccion.errors?.['required']">La dirección es obligatoria.</div>
+    </div>
+
+    <button type="submit" >Guardar Conductor</button>
+</form>

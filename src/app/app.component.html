@@ -1,0 +1,23 @@
+<div class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/" style="font-weight: bold;">{{ title }}</a>
+  </div>
+  <div class="navbar-links">    
+    <button *ngIf="!showLogoutButton()" (click)="login()">Login</button>
+    <button  *ngIf="showLogoutButton()" (click)="logout()">logout</button>    
+  </div>
+</div>
+
+<div class="container">
+  <h1>{{ message }}</h1>
+  <p>Bienvenido al sistema de gestión de transporte.</p>
+
+  <div class="crud-links">
+    <a *ngIf="role!= undefined &&  role =='COORDINADOR'" routerLink="conductores" class="crud-link">Gestionar Conductores</a>
+    <a *ngIf="role!= undefined &&  role =='COORDINADOR'" routerLink="buses" class="crud-link">Gestionar Buses</a>
+    <a *ngIf="role!= undefined &&  role =='ADMINISTRADOR'|| role == 'PASAJERO'" routerLink="rutas" class="crud-link">Gestionar Rutas</a>
+    <a *ngIf="role!= undefined &&  role =='ADMINISTRADOR'" routerLink="horarios" class="crud-link">Gestionar Horarios</a>
+    <a *ngIf="role!= undefined &&  role =='COORDINADOR'" routerLink="asignaciones" class="crud-link">Gestionar Asignaciones</a>
+  </div>
+</div>
+<router-outlet></router-outlet>

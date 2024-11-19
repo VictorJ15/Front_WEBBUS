@@ -1,0 +1,27 @@
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Bus</th>
+            <th>Horario</th>
+            <th>Ruta</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let asignacion of Asignaciones">
+            <td>{{ asignacion.id }}</td>
+            <td>{{ asignacion.bus!.placa }}</td>
+            <td>{{ asignacion.horario!.diasDeLaSemana!.join(" ,")}}</td>
+            <td>{{ asignacion.ruta!.estaciones!.join(" ,")}}</td>
+            <td>
+                <button (click)="editAsignacion()">Editar</button>
+            </td>
+            <td>
+                <button (click)="deleteAsignacion()">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
